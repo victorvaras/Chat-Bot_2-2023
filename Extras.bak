@@ -29,6 +29,8 @@
                           ))
 
 
-;Compara los id para que no se repitan
-(define (comparador_ID par1 par2)
-  (= (cadr par1) (cadr par2)))
+
+
+
+
+(define a (list 1 2 3 4 5 6 7))

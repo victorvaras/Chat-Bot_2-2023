@@ -5,13 +5,13 @@
 
 
 ;TDA Option
-;option (option indice, mensaje, chat-bot, flujo, palabras_alternativas, 
+;("option", indice, (list mensaje), chat-bot, flujo, (list palabras_alternativas) ) 
 
 
 ;Constructor de option
 (define option (lambda (indice mensaje num_chat flujo . args)
 
-        (append (list "option" indice mensaje num_chat flujo)args)
+        (append (list "option" indice (list mensaje) num_chat flujo)(list args))
 
   ))
 
@@ -23,3 +23,5 @@
 
 (define op1 (option 1 "1) Viajar" 2 4 "viajar" "turistear" "conocer") )
 (define op2 (option 2 "2) estudiar" 2 2 "aprender" "conocimiento"))
+
+

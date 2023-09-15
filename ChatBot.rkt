@@ -2,23 +2,29 @@
 (require "Extras.rkt")
 (require "Option.rkt")
 (require "Flow.rkt")
+(provide(all-defined-out))
+;TDA ChatBot
+;( "chatbot", ID, nombre, mensaje, (list flujos) )
 
-(define (cantidad_chatbot lista)
 
-  (filter (lambda (x)
 
-            (or (string=? "chatbot" (1_elem x)))
-            )lista)
+(define (chatbot ID nombre mensaje . flujos)
+  
+  (append (list "chatbot" ID nombre mensaje) (list (remove-duplicates flujos comparador_ID)))
   )
 
-(define (chatbot nombre mensaje)
-  (list "chatbot" nombre mensaje) ;(+ 1 (length (cantidad_chatbot lista))) agregar eso cuando se tenga en cuenta la lista
-  
-    )
+
+(define (chatbot-add-flow chatbot . flujos)
+
+  (append(list (1_elem chatbot) (2_elem chatbot) (3_elem chatbot) (4_elem chatbot)) (list (remove-duplicates flujos comparador_ID)))
+  )
   
  
 
 
-(define cb11 (chatbot "Asistente" "Bienvenido\n¿Qué te gustaría hacer?"))
 
-(define a (list (list "chatbot") (list "beta")))
+(define cb10 (chatbot 0 "Asistente" "Bienvenido\n¿Qué te gustaría hacer?" f9 f13))
+
+(define cb11 (chatbot 0 "Asistente" "Bienvenido\n¿Qué te gustaría hacer?"))
+(define cb12 (chatbot-add-flow cb11 f9 f13))
+
