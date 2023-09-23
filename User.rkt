@@ -24,16 +24,26 @@
 
 
 
-#|
+
 
 (define (system-login system user)
 
-  (if (and (string=? (2_elem (5_elem system)) "sin_login" ) ) 
-      
+  (if (and (string=? (2_elem (5_elem system)) "sin_login" ) (member user (3_elem (5_elem system))))
+      (list (1_elem system) (2_elem system) (3_elem system) (4_elem system) (list (1_elem (5_elem system)) user (3_elem (5_elem system))))
+      system      
       )
   )
-|#
+
+
+(define (system-logout system)
+  
+  (list (1_elem system) (2_elem system) (3_elem system) (4_elem system) (list (1_elem (5_elem system)) "sin_login"  (3_elem (5_elem system))))
+  
+  )
 
 
 (define s4 (system-add-user s1 "user1"))
 (define s5 (system-add-user s4 "user2"))
+(define s6 (system-login s5 "user2"))
+(define s7 (system-login s6 "user1"))
+(define s8 (system-logout s7))
