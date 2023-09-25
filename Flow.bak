@@ -1,21 +1,31 @@
 #lang racket
 (require "Extras.rkt")
 (require "Option.rkt")
+(provide(all-defined-out))
+;TDA Flujo
+;( "Flujo", ID, Nombre, (list de options))
 
 
-;flujo ( flujo Nombre (list de options))
 
 
-(define flow (lambda (nombre . args)
 
-               (append (list "flujo" nombre) (list args))
+
+
+(define flow (lambda (ID nombre . option)
+               
+               (append (list "flujo" ID nombre) (list (remove-duplicates option comparador_ID)))
+               
                ))
 
 
 
 (define flow-add-option (lambda (flow option)
                           
-                          (list (1_elem flow) (2_elem flow)(append (3_elem flow) (list option)))
+                          (if (= 3 (length flow))
+                              (list (1_elem flow) (2_elem flow) (3_elem flow) (list option))
+                              (list (1_elem flow) (2_elem flow) (3_elem flow) (remove-duplicates (append (4_elem flow) (list option)) comparador_ID)
+                                    )
+                            )
                           ))
 
 
@@ -23,8 +33,9 @@
 
 
 
-(define f9 (flow  "Flujo1" op1 op2))
-(define f10 (flow  "Flujo1"))
+;(define f9 (flow  1 "Flujo1" op1 op2 op1))
+;(define f10 (flow 1 "Flujo1"))
 
-(define f11 (flow-add-option f10 op1))
-(define f12 (flow-add-option f11 op2))
+;(define f11 (flow-add-option f10 op1))
+;(define f12 (flow-add-option f11 op2))
+;(define f13 (flow-add-option f12 op2))

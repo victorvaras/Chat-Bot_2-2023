@@ -1,8 +1,7 @@
 #lang racket
 ;Exportacion de funciones
 (provide(all-defined-out))
-;(require "TDA-archivo_21091719_VarasVargas.rkt")
-;(require "Extras.rkt")
+
 
 (define (1_elem x) (car x))
 (define (2_elem x) (cadr x))
