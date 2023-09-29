@@ -5,11 +5,11 @@
 (require "ChatBot.rkt")
 (provide(all-defined-out))
 ;TDA system
-;( "system", nombre, InitialChatbo, (list chatbots), (TDA usuario), N° chatbot actual
+;( "system", nombre, InitialChatbo, (list chatbots), (TDA usuario), (N° chatbot actual  N° flujo actual)
 
 (define (system nombre ini . chatbot)
 
-  (append (list "system" nombre ini) (list (remove-duplicates chatbot comparador_ID)) (list null) (list 0))
+  (append (list "system" nombre ini) (list (remove-duplicates chatbot comparador_ID)) (list null) (list (list 0 1)))
   )
 
 (define (system-add-chatbot system chatbot)
@@ -37,11 +37,12 @@
       (append x y))
   )
 
-(define (obtener_Flujos lista_flujos salida)
+(define (obtener_Flujos lista_flujos flujo)
 
-  (if (= 0 (length lista_flujos))
-      salida
-      (obtener_Flujos (cdr lista_flujos) (agregar salida (list (car lista_flujos))))      
+  (if (= (2_elem (1_elem lista_flujos)) flujo)
+      (1_elem lista_flujos)
+      (obtener_Flujos (cdr lista_flujos))
+         
       )
   )
 
@@ -50,7 +51,13 @@
 
   (if (and (< 0 (length ( 5_elem system) )) (not (equal? "sin_login" (2_elem( 5_elem system)))))
       ;si
-      (obtener_Flujos (4_elem(1_elem(6_elem (obtener_Bot_Rec (4_elem system) (6_elem system) (list null))))) '())
+      (list (1_elem system) (2_elem system) (3_elem system) (4_elem system) (5_elem system)
+            (list (4_elem (obtener_Flujos (4_elem(1_elem(6_elem (obtener_Bot_Rec (4_elem system) (1_elem (6_elem system)) (list null))))) (2_elem (6_elem system))))
+                  (5_elem (obtener_Flujos (4_elem(1_elem(6_elem (obtener_Bot_Rec (4_elem system) (1_elem (6_elem system)) (list null))))) (2_elem (6_elem system))))
+                  )
+            )
+      
+      
 
 
       system);caso que no
