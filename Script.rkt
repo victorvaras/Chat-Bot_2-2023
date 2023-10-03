@@ -52,4 +52,8 @@
 (define s9 (system-logout s8))
 (define s10 (system-login s9 "user2"))
 
-(define a (system-talk-rec s10 "a"))
+(define a (system-talk-rec s10 "hola"))
+(define b (system-talk-rec a "1"))
+(define c (system-talk-rec b "1"))
+(define d (system-talk-rec c "3"))
+(define e (system-talk-rec d "3"))

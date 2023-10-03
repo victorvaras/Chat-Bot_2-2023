@@ -17,11 +17,11 @@
   (if (null? (5_elem system))
       (list (1_elem system)(2_elem system) (3_elem system) (4_elem system)
             (list "user" "sin_login" (list user))
-            (6_elem system))
+            (6_elem system) (7_elem system))
 
       (list (1_elem system)(2_elem system) (3_elem system) (4_elem system)
             (list "user" (2_elem (5_elem system)) (remove-duplicates (append (caddr(5_elem system)) (list user))))
-            (6_elem system))
+            (6_elem system) (7_elem system))
       ))
 
 
@@ -32,7 +32,7 @@
 
   (if (and (string=? (2_elem (5_elem system)) "sin_login" ) (member user (3_elem (5_elem system))))
       (list (1_elem system) (2_elem system) (3_elem system) (4_elem system) (list (1_elem (5_elem system)) user (3_elem (5_elem system)))
-            (6_elem system))
+            (6_elem system)(7_elem system))
       system      
       )
   )
@@ -41,7 +41,7 @@
 (define (system-logout system)
   
   (list (1_elem system) (2_elem system) (3_elem system) (4_elem system) (list (1_elem (5_elem system)) "sin_login"  (3_elem (5_elem system)))
-        (6_elem system))
+        (6_elem system) (7_elem system))
   
   )
 

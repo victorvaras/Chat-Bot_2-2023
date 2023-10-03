@@ -30,4 +30,4 @@
 
 ;Compara los id para que no se repitan
 (define (comparador_ID par1 par2)
-  (= (cadr par1) (cadr par2)))
+  (equal? (cadr par1) (cadr par2)))

@@ -5,18 +5,17 @@
 (require "ChatBot.rkt")
 (provide(all-defined-out))
 ;TDA system
-;( "system", nombre, InitialChatbo, (list chatbots), (TDA usuario), (N° chatbot actual  N° flujo actual)
+;( "system", nombre, InitialChatbo, (list chatbots), (TDA usuario), (N° chatbot actual  N° flujo actual), (TDA chatHistory)
 
 (define (system nombre ini . chatbot)
 
-  (append (list "system" nombre ini) (list (remove-duplicates chatbot comparador_ID)) (list null) (list (list 0 1)))
+  (append (list "system" nombre ini) (list (remove-duplicates chatbot comparador_ID)) (list null) (list (list "0" "1")) (list null) )
   )
 
 (define (system-add-chatbot system chatbot)
 
   (list (1_elem system) (2_elem system) (3_elem system) (remove-duplicates (append (4_elem system) (list chatbot)) comparador_ID)
-        (5_elem system)
-        (6_elem system)
+        (5_elem system) (6_elem system) (7_elem system)
   ))
 
 
@@ -25,7 +24,7 @@
   (cond
     [(= 0 (length lista_chatbots)) salida]
 
-    [(= bot (2_elem (car lista_chatbots))) (obtener_Bot_Rec (cdr lista_chatbots) bot  (car lista_chatbots)) ]
+    [(equal? bot (2_elem (car lista_chatbots))) (obtener_Bot_Rec (cdr lista_chatbots) bot  (car lista_chatbots)) ]
 
     [else (obtener_Bot_Rec (cdr lista_chatbots) bot salida)]
       
@@ -39,9 +38,10 @@
 
 (define (obtener_Flujos lista_flujos flujo)
 
-  (if (= (2_elem (1_elem lista_flujos)) flujo)
+  (if (equal? (2_elem (1_elem lista_flujos)) flujo)
       (1_elem lista_flujos)
-      (obtener_Flujos (cdr lista_flujos))
+      (obtener_Flujos (cdr lista_flujos) flujo)
+      
          
       )
   )
@@ -50,12 +50,30 @@
 (define (system-talk-rec system eleccion)
 
   (if (and (< 0 (length ( 5_elem system) )) (not (equal? "sin_login" (2_elem( 5_elem system)))))
-      ;si
-      (list (1_elem system) (2_elem system) (3_elem system) (4_elem system) (5_elem system)
-            (list (4_elem (obtener_Flujos (4_elem(1_elem(6_elem (obtener_Bot_Rec (4_elem system) (1_elem (6_elem system)) (list null))))) (2_elem (6_elem system))))
-                  (5_elem (obtener_Flujos (4_elem(1_elem(6_elem (obtener_Bot_Rec (4_elem system) (1_elem (6_elem system)) (list null))))) (2_elem (6_elem system))))
-                  )
-            )
+      
+      (cond
+        [(null? (7_elem system)) 
+         (list (1_elem system) (2_elem system) (3_elem system) (4_elem system) (5_elem system)
+               (list (4_elem (obtener_Flujos (4_elem(1_elem(6_elem (obtener_Bot_Rec (4_elem system) (1_elem (6_elem system)) (list null)))))
+                                             (2_elem (6_elem system))))
+                     (5_elem (obtener_Flujos (4_elem(1_elem(6_elem (obtener_Bot_Rec (4_elem system) (1_elem (6_elem system)) (list null)))))
+                                             (2_elem (6_elem system)))))
+                 (append  (7_elem system)  (list(string-append (2_elem( 5_elem system)) ":" eleccion ))))
+         ]
+
+        [ else 
+         (list (1_elem system) (2_elem system) (3_elem system) (4_elem system) (5_elem system)
+               (list (4_elem (obtener_Flujos (4_elem(1_elem(6_elem (obtener_Bot_Rec (4_elem system) (1_elem (6_elem system)) (list null)))))
+                                             eleccion))
+                     (5_elem (obtener_Flujos (4_elem(1_elem(6_elem (obtener_Bot_Rec (4_elem system) (1_elem (6_elem system)) (list null)))))
+                                             eleccion)))
+               (append  (7_elem system)  (list(string-append (2_elem( 5_elem system)) ":" eleccion ))))
+         ]
+        )
+
+
+        
+      
       
       
 
@@ -64,6 +82,13 @@
 
   
   )
+#|
+(list (1_elem system) (2_elem system) (3_elem system) (4_elem system) (5_elem system)
+            (list (4_elem (obtener_Flujos (4_elem(1_elem(6_elem (obtener_Bot_Rec (4_elem system) (1_elem (6_elem system)) (list null))))) (2_elem (6_elem system))))
+                  (5_elem (obtener_Flujos (4_elem(1_elem(6_elem (obtener_Bot_Rec (4_elem system) (1_elem (6_elem system)) (list null))))) (2_elem (6_elem system))))
+                  )
+            )
+|#
 
 
 

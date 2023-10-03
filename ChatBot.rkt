@@ -10,16 +10,26 @@
 
 (define (chatbot ID nombre mensaje startFlowId . flujos)
   
-  (append (list "chatbot" ID nombre mensaje startFlowId) (list (remove-duplicates flujos comparador_ID)))
+  (append (list "chatbot" (number->string ID) nombre mensaje startFlowId) (list (remove-duplicates flujos comparador_ID)))
   )
 
 
+
+
+(define (chatbot-add-flow chatbot . flujos)
+  (if (null? (cdr chatbot))
+      (list (remove-duplicates flujos comparador_ID))
+      
+
+  (append (list (1_elem chatbot) (chatbot-add-flow (cdr chatbot) flujos)))
+  ))
+  
+ #|
 (define (chatbot-add-flow chatbot . flujos)
 
   (append(list (1_elem chatbot) (2_elem chatbot) (3_elem chatbot) (4_elem chatbot) (5_elem chatbot)) (list (remove-duplicates flujos comparador_ID)))
   )
-  
- 
+|#
 
 
 
