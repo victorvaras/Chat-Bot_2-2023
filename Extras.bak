@@ -2,7 +2,13 @@
 ;Exportacion de funciones
 (provide(all-defined-out))
 
-
+#|
+ Descripción: Funcion 
+ Tipo de algoritmo/estrategia: 
+ Tipo de recursión: N/A
+ Dominio: 
+ Recorrido: 
+|#
 (define (1_elem x) (car x))
 (define (2_elem x) (cadr x))
 (define (3_elem x) (caddr x))
@@ -13,21 +19,6 @@
 
 
 
-#|
- Descripción: Funcion la cual obtiene la fecha actual
- Tipo de algoritmo/estrategia: Se crea un string en cual contiene el dia mes y año actual
- Tipo de recursión: N/A
- Dominio: -
- Recorrido: string
-|#
-(require racket/date)
-(define (creacion_fecha) (string-append
-                          (number->string(date-day(current-date))) "-"
-                          (number->string(date-month(current-date)))"-"
-                          (number->string(date-year(current-date)))
-                          ))
-
-
 ;Compara los id para que no se repitan
 (define (comparador_ID par1 par2)
-  (= (cadr par1) (cadr par2)))
+  (equal? (cadr par1) (cadr par2)))

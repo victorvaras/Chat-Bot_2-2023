@@ -13,7 +13,7 @@
 
 (define flow (lambda (ID nombre . option)
                
-               (append (list "flujo" ID nombre) (list (remove-duplicates option comparador_ID)))
+               (append (list "flujo" (number->string ID) nombre) (list (remove-duplicates option comparador_ID)))
                
                ))
 

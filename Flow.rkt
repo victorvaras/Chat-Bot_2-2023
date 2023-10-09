@@ -2,15 +2,18 @@
 (require "Extras.rkt")
 (require "Option.rkt")
 (provide(all-defined-out))
+
 ;TDA Flujo
 ;( "Flujo", ID, Nombre, (list de options))
 
 
-
-
-
-
-
+#|
+ Descripción: Funcion contructora de flow 
+ Tipo de algoritmo/estrategia: Concatenacion de elementos en lista
+ Tipo de recursión: N/A
+ Dominio: int X string X string
+ Recorrido: Flow
+|#
 (define flow (lambda (ID nombre . option)
                
                (append (list "flujo" (number->string ID) nombre) (list (remove-duplicates option comparador_ID)))
@@ -18,7 +21,13 @@
                ))
 
 
-
+#|
+ Descripción: Funcion que agrega un option a flow
+ Tipo de algoritmo/estrategia:  Concatenar
+ Tipo de recursión: N/A
+ Dominio: Flow X option
+ Recorrido: flow
+|#
 (define flow-add-option (lambda (flow option)
                           
                           (if (= 3 (length flow))
@@ -28,14 +37,3 @@
                             )
                           ))
 
-
-
-
-
-
-(define f9 (flow  1 "Flujo1" op1 op2 op1))
-(define f10 (flow 1 "Flujo1"))
-
-(define f11 (flow-add-option f10 op1))
-(define f12 (flow-add-option f11 op2))
-(define f13 (flow-add-option f12 op2))

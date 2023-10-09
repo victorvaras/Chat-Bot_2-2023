@@ -2,7 +2,13 @@
 ;Exportacion de funciones
 (provide(all-defined-out))
 
-
+#|
+ Descripción: Funciones las cuales son selectores de una lista desde el elemento 1 a 7
+ Tipo de algoritmo/estrategia: Selector de lista
+ Tipo de recursión: N/A
+ Dominio: Lista
+ Recorrido: elemento
+|#
 (define (1_elem x) (car x))
 (define (2_elem x) (cadr x))
 (define (3_elem x) (caddr x))
@@ -14,20 +20,11 @@
 
 
 #|
- Descripción: Funcion la cual obtiene la fecha actual
- Tipo de algoritmo/estrategia: Se crea un string en cual contiene el dia mes y año actual
+ Descripción: Funcion que se encarga de comparar 2 elementos referentes a los ID
+ Tipo de algoritmo/estrategia: Comparador 
  Tipo de recursión: N/A
- Dominio: -
- Recorrido: string
+ Dominio: string X string
+ Recorrido: Bool
 |#
-(require racket/date)
-(define (creacion_fecha) (string-append
-                          (number->string(date-day(current-date))) "-"
-                          (number->string(date-month(current-date)))"-"
-                          (number->string(date-year(current-date)))
-                          ))
-
-
-;Compara los id para que no se repitan
 (define (comparador_ID par1 par2)
   (equal? (cadr par1) (cadr par2)))

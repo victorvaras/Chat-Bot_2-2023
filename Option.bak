@@ -11,7 +11,7 @@
 ;Constructor de option
 (define option (lambda (indice mensaje num_chat flujo . args)
 
-        (append (list "option" (number->string indice) (list mensaje) num_chat flujo)(list args))
+        (append (list "option" (number->string indice) (list mensaje) (number->string num_chat) (number->string flujo))(list args))
 
   ))
 

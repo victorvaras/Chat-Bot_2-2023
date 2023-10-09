@@ -12,6 +12,13 @@
 ;("user", usuario_login ,(list asuarios)
 
 
+#|
+ Descripción: Funcion que crea un usuario nuevo
+ Tipo de algoritmo/estrategia: concatenacion
+ Tipo de recursión: N/A
+ Dominio: system X user
+ Recorrido: system
+|#
 (define (system-add-user system user)
 
   (if (null? (5_elem system))
@@ -27,7 +34,13 @@
 
 
 
-
+#|
+ Descripción: Funcion que realiza el login de un usuario registrado
+ Tipo de algoritmo/estrategia: valida si un usuario se encuentra logueado y loguea
+ Tipo de recursión: N/A
+ Dominio: system X user
+ Recorrido: system
+|#
 (define (system-login system user)
 
   (if (and (string=? (2_elem (5_elem system)) "sin_login" ) (member user (3_elem (5_elem system))))
@@ -37,17 +50,16 @@
       )
   )
 
-
+#|
+ Descripción: Funcion que desloguea a un usuario logueado
+ Tipo de algoritmo/estrategia: quita el login de un usuario
+ Tipo de recursión: N/A
+ Dominio: system 
+ Recorrido: system
+|#
 (define (system-logout system)
   
   (list (1_elem system) (2_elem system) (3_elem system) (4_elem system) (list (1_elem (5_elem system)) "sin_login"  (3_elem (5_elem system)))
         (6_elem system) (7_elem system))
   
   )
-
-
-(define s4 (system-add-user s1 "user1"))
-;(define s5 (system-add-user s4 "user2"))
-;(define s6 (system-login s5 "user2"))
-;(define s7 (system-login s6 "user1"))
-;(define s8 (system-logout s7))
