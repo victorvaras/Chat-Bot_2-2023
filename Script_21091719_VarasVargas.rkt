@@ -1,10 +1,16 @@
 #lang racket
 ;(require "Extras.rkt")
-(require "Option.rkt")
-(require "Flow.rkt")
-(require "ChatBot.rkt")
-(require "System.rkt")
-(require "User.rkt")
+(require "Option_21091719_VarasVargas.rkt")
+(require "Flow_21091719_VarasVargas.rkt")
+(require "ChatBot_21091719_VarasVargas.rkt")
+(require "System_21091719_VarasVargas.rkt")
+(require "User_21091719_VarasVargas.rkt")
+
+;-------------------------------------------------
+;-------------------------------------------------
+; --------- Scrip de prueba entregado-------------
+;-------------------------------------------------
+;-------------------------------------------------
 
 ;Ejemplo de un sistema de chatbots basado en el esquema del enunciado general
 ;Chabot0
@@ -52,11 +58,66 @@
 (define s9 (system-logout s8))
 (define s10 (system-login s9 "user2"))
 
-(define a (system-talk-rec s10 "hola"))
-(define b (system-talk-rec a "1"))
-(define c (system-talk-rec b "1"))
-(define d (system-talk-rec c "3"))
-(define e (system-talk-rec d "4"))
+(define s11 (system-talk-rec s10 "hola"))
+(define s12 (system-talk-rec s11 "1"))
+(define s13 (system-talk-rec s12 "1"))
+(define s14 (system-talk-rec s13 "Museo"))
+(define s15 (system-talk-rec s14 "1"))
+(define s16 (system-talk-rec s15 "3"))
+(define s17 (system-talk-rec s16 "5"))
+;(display (system-synthesis s17 "user2"))
+;(system-simulate s0 5 32131)
 
+
+
+
+;-------------------------------------------------
+;-------------------------------------------------
+; ----------- Scrip de prueba nuevo --------------
+;-------------------------------------------------
+;-------------------------------------------------
+
+
+;Bot 0
+
+(define OP01 (option 1 "1) Comprar" 1 1 "comprar" "adquirir"))
+(define OP02 (option 2 "2) Arrendar" 3 1 "arrendar" "rentar" "alquilar"))
+
+(define F01 (flow 1 "Flujo Principal Chatbot 0\nBienvenido\n¿Qué te gustaría hacer?" OP01))
+(define F02 (flow-add-option F01 OP01))
+(define F03 (flow-add-option F02 OP02))
+
+(define CB0 (chatbot 0 "Automotora" "Bienvenido\n¿Qué te gustaría hacer?" 1 F03 F03))
+
+
+;Bot 1
+
+(define OP11 (option 1 "1) Contado" 0 1 "contado" "efectivo" "cheque"))
+(define OP12 (option 2 "2) Credito" 0 1 "credito" "financiamiento" "cuotas"))
+
+(define F11 (flow 1 "flujo 1 chatbot 1\n ¿Que modo de pago desea?" OP11))
+(define F12 (flow-add-option F11 OP12))
+
+(define CB1 (chatbot 1 "Modo de pago" 1 F12))
+
+
+
+
+;system
+
+(define S0 (system "Chatbots prueba automotora" 0 CB0))
+(define S1 (system-add-chatbot S0 CB1))
+(define S2 (system-login S1 "user2"))
+(define S3 (system-add-user S2 "victor"))
+(define S4 (system-add-user S3 "victor"))
+(define S5 (system-add-user S4 "hugo"))
+(define S6 (system-login S5 "hugo"))
+(define S7 (system-logout S6))
+(define S8 (system-login S7 "victor"))
+
+
+(define S9 (system-talk-rec S8 "buenas"))
+(define S10 (system-talk-rec S9 "1"))
+(define S11 (system-talk-rec S9 "comprar"));igual a S9
 
 

@@ -1,10 +1,10 @@
 #lang racket
 
-(require "Extras.rkt")
-(require "Option.rkt")
-(require "Flow.rkt")
-(require "ChatBot.rkt")
-(require "System.rkt")
+(require "Extras_21091719_VarasVargas.rkt")
+(require "Option_21091719_VarasVargas.rkt")
+(require "Flow_21091719_VarasVargas.rkt")
+(require "ChatBot_21091719_VarasVargas.rkt")
+(require "System_21091719_VarasVargas.rkt")
 (provide(all-defined-out))
 
 
@@ -43,7 +43,7 @@
 |#
 (define (system-login system user)
 
-  (if (and (string=? (2_elem (5_elem system)) "sin_login" ) (member user (3_elem (5_elem system))))
+  (if (and (not (null? (5_elem system)))(string=? (2_elem (5_elem system)) "sin_login" ) (member user (3_elem (5_elem system))))
       (list (1_elem system) (2_elem system) (3_elem system) (4_elem system) (list (1_elem (5_elem system)) user (3_elem (5_elem system)))
             (6_elem system)(7_elem system))
       system      

@@ -1,7 +1,7 @@
 #lang racket
-(require "Extras.rkt")
-(require "Option.rkt")
-(require "Flow.rkt")
+(require "Extras_21091719_VarasVargas.rkt")
+(require "Option_21091719_VarasVargas.rkt")
+(require "Flow_21091719_VarasVargas.rkt")
 (provide(all-defined-out))
 ;TDA ChatBot
 ;( "chatbot", ID, nombre, mensaje, startFlowId,( (list flujos) )

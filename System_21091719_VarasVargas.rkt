@@ -1,8 +1,8 @@
 #lang racket
-(require "Extras.rkt")
-(require "Option.rkt")
-(require "Flow.rkt")
-(require "ChatBot.rkt")
+(require "Extras_21091719_VarasVargas.rkt")
+(require "Option_21091719_VarasVargas.rkt")
+(require "Flow_21091719_VarasVargas.rkt")
+(require "ChatBot_21091719_VarasVargas.rkt")
 (provide(all-defined-out))
 ;TDA system
 ;( "system", nombre, InitialChatbo, (list chatbots), (TDA usuario), (N° chatbot actual  N° flujo actual), (TDA chatHistory))
@@ -96,8 +96,6 @@
 |#
 (define (system-talk-rec_aux system eleccion)
 
-  (display (obtener_Flujos (4_elem(1_elem(6_elem (obtener_Bot_Rec (4_elem system) (1_elem (6_elem system)) (list null)))))
-                                             (2_elem (6_elem system))))
   (if (and (< 0 (length ( 5_elem system) )) (not (equal? "sin_login" (2_elem( 5_elem system)))))
       
       (cond
@@ -144,6 +142,6 @@
 |#
 (define (system-talk-rec system eleccion)
 
-  (chat (system-talk-rec_aux system eleccion) eleccion)
+  ;(chat (system-talk-rec_aux system eleccion) eleccion)
   (system-talk-rec_aux system eleccion) 
   )
